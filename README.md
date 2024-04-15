@@ -2,7 +2,7 @@
 
 Created a YouTube like webpage using React. 
 
-[deployed url](https://react-intro-pmnak.onrender.com
+[deployed url](https://react-intro-pmnak.onrender.com)
 
 ## What Worked Well
 I was able to get the end result needed, it was fairly understandable. I was also able to get the starter code into this project. 
