@@ -4,6 +4,7 @@ import SearchBar from './search_bar';
 import youtubeSearch from '../services/youtube-api';
 import VideoList from './video_list';
 import VideoDetail from './video_detail';
+import '../style.scss';
 
 function App(props) {
   // eslint-disable-next-line no-unused-vars
