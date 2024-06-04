@@ -1,55 +1,83 @@
+/* eslint-disable no-unused-vars */
 import React from 'react';
-import {
-  BrowserRouter, Routes, Route, NavLink, useParams,
-} from 'react-router-dom';
 import { createRoot } from 'react-dom/client';
 import './style.scss';
+import {
+  Routes, Route, NavLink, useParams, createBrowserRouter, RouterProvider, Outlet,
+} from 'react-router-dom';
+import Counter from './components/counter';
+import Controls from './components/controls';
 
-function Welcome() {
-  return <div>Welcome</div>;
-}
-
-function About() {
-  return <div>All there is to know about me</div>;
-}
-
-function Test() {
-  const { id } = useParams();
-  return <div>ID: {id}</div>;
-}
-
-function Nav() {
+function Nav(props) {
   return (
     <nav>
       <ul>
         <li><NavLink to="/">Home</NavLink></li>
         <li><NavLink to="/about">About</NavLink></li>
-        <li><NavLink to="/test/id1">Test id1</NavLink></li>
-        <li><NavLink to="/test/id2">Test id2</NavLink></li>
+        <li><NavLink to="/test/id1">test id1</NavLink></li>
+        <li><NavLink to="/test/id2">test id2</NavLink></li>
       </ul>
     </nav>
   );
 }
-
-function FallBack() {
-  return <div>URL Not Found</div>;
+function About(props) {
+  return <div> All there is to know about me </div>;
 }
 
-function App(props) {
+function Welcome(props) {
   return (
-    <BrowserRouter>
-      <div>
-        <Nav />
-        <Routes>
-          <Route path="/" element={<Welcome />} />
-          <Route path="/about" element={<About />} />
-          <Route path="/test/:id" element={<Test />} />
-          <Route path="*" element={<FallBack />} />
-        </Routes>
-      </div>
-    </BrowserRouter>
+    <div>
+      Welcome
+      <Counter />
+      <Controls />
+    </div>
   );
 }
 
+function Test(props) {
+  const { id } = useParams();
+  return <div> ID: {id} </div>;
+}
+
+function FallBack(props) {
+  return <div>URL Not Found</div>;
+}
+
+function NavbarWrapper() {
+  return (
+    <div>
+      <Nav />
+      <Outlet />
+    </div>
+  );
+}
+
+const router = createBrowserRouter([
+  {
+    path: '/',
+    element: <NavbarWrapper />,
+    children: [
+      {
+        path: '/',
+        Component: Welcome,
+      },
+      {
+        path: '/about',
+        Component: About,
+      },
+      {
+        path: '/test/:id',
+        Component: Test,
+      },
+      {
+        path: '*',
+        Component: FallBack,
+      },
+    ],
+  },
+]);
+
 const root = createRoot(document.getElementById('main'));
-root.render(<App />);
+root.render(
+  <RouterProvider router={router} />,
+);
