@@ -1,6 +1,6 @@
 # React Intro
 
-Created a YouTube like webpage using React. 
+Updated starter pack. 
 
 [deployed url](https://react-intro-pmnak.onrender.com)
 
