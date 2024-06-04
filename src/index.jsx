@@ -1,24 +1,38 @@
-/* eslint-disable no-undef */
-/* eslint-disable react/jsx-no-undef */
-/* eslint-disable no-unused-vars */
 import React from 'react';
-import { createRoot } from 'react-dom/client';
-import './style.scss';
 import {
   BrowserRouter, Routes, Route, NavLink, useParams,
 } from 'react-router-dom';
+import { createRoot } from 'react-dom/client';
+import './style.scss';
 
-function Welcome(props) {
+function Welcome() {
   return <div>Welcome</div>;
 }
 
-function About(props) {
-  return <div> All there is to know about me </div>;
+function About() {
+  return <div>All there is to know about me</div>;
 }
 
-function Test(props) {
+function Test() {
   const { id } = useParams();
-  return <div> ID: {id} </div>;
+  return <div>ID: {id}</div>;
+}
+
+function Nav() {
+  return (
+    <nav>
+      <ul>
+        <li><NavLink to="/">Home</NavLink></li>
+        <li><NavLink to="/about">About</NavLink></li>
+        <li><NavLink to="/test/id1">Test id1</NavLink></li>
+        <li><NavLink to="/test/id2">Test id2</NavLink></li>
+      </ul>
+    </nav>
+  );
+}
+
+function FallBack() {
+  return <div>URL Not Found</div>;
 }
 
 function App(props) {
@@ -35,24 +49,6 @@ function App(props) {
       </div>
     </BrowserRouter>
   );
-}
-
-function Nav(props) {
-  return (
-    <nav>
-      <ul>
-        <li><NavLink to="/">Home</NavLink></li>
-        <li><NavLink to="/about">About</NavLink></li>
-        <li><NavLink to="/test/id1">test id1</NavLink></li>
-        <li><NavLink to="/test/id2">test id2</NavLink></li>
-
-      </ul>
-    </nav>
-  );
-}
-
-function FallBack(props) {
-  return <div>URL Not Found</div>;
 }
 
 const root = createRoot(document.getElementById('main'));
