@@ -1,24 +1,25 @@
-/* eslint-disable react/self-closing-comp */
 import React from 'react';
+import useStore from '../store'; // Adjust the path as necessary
 
-function VideoDetail({ video }) {
+function VideoDetail() {
+  // Accessing the selected video directly from the Zustand store
+  const video = useStore((state) => state.videoSlice.selected);
+
   if (!video) {
-    return <div>Loading...</div>;
+    return <div>Loading...</div>; // Displaying a loading message if no video is selected
   }
 
-  const { videoId } = video.id; // will give linting error - read it and decide for yourself
-  // const {videoId} = video.id // is example of destructuring, pulling videoId from out of the object that is video.id
-  const url = `https://www.youtube.com/embed/${videoId}`;
-  console.log(url);
+  const { videoId } = video.id; // Assuming video.id directly contains the videoId
+  const url = `https://www.youtube.com/embed/${videoId}`; // Constructing the YouTube embed URL
 
   return (
     <div id="video-detail">
       <div className="embed-responsive embed-responsive-16by9">
-        <iframe title="youtube detail" className="embed-responsive-item" src={url}></iframe>
+        <iframe title="YouTube video player" src={url} className="embed-responsive-item" allowFullScreen />
       </div>
       <div className="details">
-        <div>{video.snippet.title}</div>
-        <div>{video.snippet.description}</div>
+        <h4>{video.snippet.title}</h4>
+        <p>{video.snippet.description}</p>
       </div>
     </div>
   );

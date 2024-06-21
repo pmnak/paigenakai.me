@@ -1,12 +1,14 @@
 import React from 'react';
+import useStore from '../store';
 
 function VideoListItem(props) {
-  const imgUrl = props.video.snippet.thumbnails.default.url;
+  const selectVideo = useStore(({ videoSlice }) => videoSlice.selectVideo);
+  const imgUrl = props?.video?.snippet?.thumbnails?.default?.url;
 
   return (
-    <li onClick={() => props.onVideoSelect(props.video)}>
+    <li onClick={() => selectVideo(props.video)}>
       <img src={imgUrl} alt="video" />
-      <div>{props.video.snippet.title}</div>
+      <div>{props?.video?.snippet?.title}</div>
     </li>
   );
 }

@@ -1,3 +1,4 @@
+/* eslint-disable import/no-extraneous-dependencies */
 /* eslint-disable no-unused-vars */
 import React from 'react';
 import { createRoot } from 'react-dom/client';
@@ -7,15 +8,13 @@ import {
 } from 'react-router-dom';
 import Counter from './components/counter';
 import Controls from './components/controls';
+import Youtube from './components/youtube';
 
 function Nav(props) {
   return (
     <nav>
       <ul>
-        <li><NavLink to="/">Home</NavLink></li>
-        <li><NavLink to="/about">About</NavLink></li>
-        <li><NavLink to="/test/id1">test id1</NavLink></li>
-        <li><NavLink to="/test/id2">test id2</NavLink></li>
+        <li><NavLink to="/youtube">YouTube</NavLink></li>
       </ul>
     </nav>
   );
@@ -59,19 +58,15 @@ const router = createBrowserRouter([
     children: [
       {
         path: '/',
-        Component: Welcome,
+        Component: Youtube,
       },
       {
-        path: '/about',
-        Component: About,
-      },
-      {
-        path: '/test/:id',
-        Component: Test,
+        path: '/youtube',
+        Component: Youtube,
       },
       {
         path: '*',
-        Component: FallBack,
+        Component: <FallBack />,
       },
     ],
   },
